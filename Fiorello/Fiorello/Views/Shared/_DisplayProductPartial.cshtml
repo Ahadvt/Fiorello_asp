@@ -1,0 +1,37 @@
+﻿@model HomeVM
+
+@using Fiorello.ViewModels
+
+@foreach (var item in Model.productCategories)
+{
+    <div class="mycard  col-lg-3 col-md-6 all" data-id="@item.Category.Name.ToLower()">
+
+        @foreach (var img in item.Product.ProductImgs)
+        {
+        <a asp-controller="flower" asp-action="details" asp-route-id="@item.Product.Id" data-aos-offset="100">
+            <div class="img">
+                <img src="@img.Img" alt="">
+            </div>
+        </a>
+        }
+        
+        <div class="name">
+            <p style="color: #757575;" href="#">@item.Product.Name</p>
+        </div>
+        <div class="price">
+            <div class="adCart product"><a  style="text-decoration:none" asp-controller="flower" asp-action="addtocard" asp-route-id="@item.Product.Id">Add to cart</a></div>
+
+            @if (item.Product.DiscauntId == null)
+            {
+                <div class="cost">@item.Product.Price$  </div>
+            }
+            else
+            {
+                <div class="cost">
+                    <span style="text-decoration: line-through;">@item.Product.Price</span>
+            @(item.Product.Price*(100-item.Product.Discaunt.Precenet)/100)$  </div>
+                
+            }
+        </div>
+    </div>
+}

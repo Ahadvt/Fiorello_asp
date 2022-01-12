@@ -1,0 +1,62 @@
+﻿@model HomeVM
+@using Fiorello.ViewModels
+@using Fiorello.Models
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<section id="cards">
+    <div class="card-filter">
+        <div class=" cards row">
+            <partial name="/Views/Shared/_DisplayProductPartial.cshtml" />
+        </div>
+        </div>
+    </section>
+
+<div class="container">
+
+    <div>
+        <nav aria-label="...">
+            <ul class="pagination">
+
+                @if (ViewBag.CurrentPage == 1)
+                {
+
+
+                    <li class="page-item disabled">
+                        <a style="pointer-events:none" class="page-link">Previous</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item ">
+                        <a asp-controller="flower" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)" class="page-link">Previous</a>
+                    </li>
+                }
+                @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                {
+                    <li class="page-item  @(ViewBag.CurrentPage == i ?  "active" : "")" style="@(ViewBag.CurrentPage==i ? "pointer-events:none" :"")"><a class="page-link" asp-controller="flower" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+
+                @if (ViewBag.TotalPage == ViewBag.CurrentPage)
+                {
+                    <li class="page-item disabled">
+                        <a style="pointer-events:none" class="page-link" asp-controller="flower" asp-action="index" asp-route-page="@(ViewBag.CurrentPage)">Next</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="flower" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+
+</div>

@@ -1,0 +1,243 @@
+﻿@model HomeVM
+@using Fiorello.ViewModels
+@using Fiorello.Models
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main>
+
+    <section id="img-animation">
+        <div class="img-text">
+            @foreach (var item in Model.sliders)
+            {
+                <div id="slideText" class="text">
+                    <div class="text-top">
+                        <h2>Send <span style="color: red;">flowers</span> like <br>@item.Title</h2>
+                    </div>
+                    <div class="text-center">
+                        <p>@item.Description</p>
+
+                    </div>
+                    <div class="img">
+                        <img src="assets/img/@item.SignatureImg" alt="">
+                    </div>
+                </div>
+            }
+        </div>
+
+    </section>
+
+    <section id="cards">
+        <div class="card-filter">
+            <div class="filter-list">
+                <div id="filterresponsive">
+                    <p>Category</p>
+                    <ul id="categoryresp">
+                        <li><a href="#">All</a></li>
+                        <li><a href="#">popular</a></li>
+                        <li><a href="#">winter</a></li>
+                        <li><a href="#">various</a></li>
+                        <li><a href="#">exotic</a></li>
+                        <li><a href="#">greens</a></li>
+                        <li><a href="#">cactuses</a></li>
+                    </ul>
+                </div>
+                <div class="filters">
+                    <ul id="category">
+                        <li class="categoryF" id="1"><a href="">All</a></li>
+                        @foreach (var category in Model.categories)
+                        {
+                            <li class="categoryF" id="@category.Name.ToLower()"><a href="">@category.Name</a></li>
+                        }
+                    </ul>
+
+                </div>
+                <div class="filter">
+                    <div class="text-filter">
+                        <p>FILTER</p>
+                    </div>
+                    <div class="Filters">
+                        <div class="info-price">
+                            <div class="info">
+                                <h4>Sort By </h4>
+                                <ul>
+                                    <li>Default</li>
+                                    <li>Popularity</li>
+                                    <li>Newness</li>
+                                    <li>Price: Low To High</li>
+                                    <li>Price: High To Low</li>
+                                </ul>
+                            </div>
+                            <div class="price">
+                                <ul>
+                                    <li>Price Range</li>
+                                    <li>All</li>
+                                    <li>$0-$10</li>
+                                    <li>$10-$20</li>
+                                    <li>$20-$30</li>
+                                    <li>$30-$40</li>
+                                    <li>40$+</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="cards row">
+                <partial name="/Views/Shared/_DisplayProductPartial.cshtml" />
+            </div>
+        </div>
+    </section>
+
+
+
+        <section id="flower">
+
+            <div class="container">
+                <div class="text">
+                    <div class="text-top">
+                        <h2>@Model.settings.FlowerExTitle</h2>
+                    </div>
+                    <div class="text-bottom">
+                        <p>@Model.settings.FlowerExDesc</p>
+
+                    </div>
+                </div>
+                <div class="imgs ">
+                    <div class="row">
+                        @foreach (var expertPosition in Model.expertsp)
+                        {
+
+
+                            @foreach (var experts in expertPosition.Expertts)
+                            {
+
+                                <div class="img-text col col-lg-3">
+                                    <div class="img">
+                                        <img src="@experts.Img" alt="">
+                                    </div>
+                                    <div class="text">
+                                        <h6>@experts.Name</h6>
+                                        <p>@expertPosition.Position</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <section id="mypar">
+            <div class="parallax-window" data-parallax="scroll" data-image-src="./assets/img/@Model.settings.Parallaximg">
+
+                <div class="parallax">
+                    <div class="text-input">
+                        <div class="text">
+                            <h3>@Model.settings ParallaxTitle</h3>
+                        </div>
+                        <div class="myinput-btn">
+                            <input type="text" placeholder="email">
+                            <div class="mybtn">
+                                <button>Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="blog">
+            <div class="container">
+                <div class="texts">
+                    <div class="text-top">
+                        <h4>@Model.settings.BlogTitle</h4>
+                    </div>
+                    <div class="text-bottom">
+                        <p>@Model.settings.BlogDesc</p>
+                    </div>
+                </div>
+                <div class="cards row">
+                    @foreach (var blog in Model.blogs)
+                    {
+                        <div class="mycard  col-lg-4">
+                            <div class="img">
+                                <img width="358" src="@blog.Img" alt="">
+                            </div>
+                            <div class="text">
+                                <div class="name">
+                                    <h6>@blog.Title</h6>
+                                </div>
+                                <div class="desc">
+                                    <p>@blog.Decsrtipt</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </section>
+
+        <section id="slidebar">
+            <div class="owl-carousel owl-theme">
+
+                @foreach (var carusel in Model.carusels)
+                {
+                    <div class="item">
+
+                        <div class="slide">
+                            <div class="slide-bar">
+                                <div class="img">
+                                    <img style="width: 20%;" src="@carusel.Img" alt="">
+                                </div>
+                                <div class="info-name">
+                                    <div class="info">
+                                        <p style="font-size: 1rem;">
+                                            @carusel.Title
+                                        </p>
+                                    </div>
+                                    <div class="name">
+                                        @carusel.Name <br> <span>@carusel.Position</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+        </section>
+
+
+
+    <div class="content">
+        <div class="icon ">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+    </div>
+
+
+</main>
+

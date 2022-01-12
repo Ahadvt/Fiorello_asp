@@ -1,0 +1,289 @@
+﻿
+@model Product 
+@using Fiorello.Models
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+    <section id="Productlist">
+        <div class="container">
+            <div class="text">
+                <div class="text-top">
+                    <h1>Product List</h1>
+                </div>
+                <div class="text-bottom">
+                    <p>Where flowers are our inspiration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="adcart">
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-6">
+                    <div class="imgs">
+                        <div class="small-imgs ">
+                            <div class="img">
+                                <img width="45%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/shop-2-gallery-4.jpg" alt="">
+                            </div>
+                            <div class="img">
+                                <img width="45%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/shop-2-gallery-3.jpg" alt="">
+                            </div>
+                            <div class="img">
+                                <img width="45%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/shop-2-gallery-2.jpg" alt="">
+                            </div>
+                            <div class="img">
+                                <img width="45%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/shop-2-gallery-1.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="largimage">
+                            <img src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/shop-2-img.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sale col-lg-6">
+                    <div class="text-input">
+                        <div class="text">
+                            <div class="name">
+                                <h2>@Model.Name</h2>
+                            </div>
+                            <div class="cost">
+                                @if (Model.DiscauntId == null)
+                                {
+
+
+                                    <p><small>@Model.Price$</small></p>
+                                }
+                                else
+                                {
+                                    <p><small style="text-decoration:line-through">239$</small></p>
+                                    <p><small>@(Model.Price*(100-Model.Discaunt.Precenet)/100)</small></p>
+                                }
+                            </div>
+                            <div class="info">
+                                @Model.Description
+                            </div>
+                            <div class="input">
+
+                                <input type="number">
+                                <div class="butn">
+                                    <button>ADD TO CARD</button>
+                                </div>
+
+                            </div>
+
+                            <div class="product-info">
+                                <ul>
+                                    <li>SKU :<a href="">@Model.Skucode</a></li>
+                                    <li>
+                                        Categories : <a href=""><small>
+                                               @foreach (var item in Model.ProductCategorys)
+                                               {
+                                                   @item.Category.Name
+                                               }
+
+                                              </small></a>
+                                    </li>
+                                    <li>
+                                        Tags : <a href=""><small>Llilies,</small></a>
+                                        <a href=""><small>Orchids</small></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info-flower">
+        <div class="butns-cards">
+            <div class="butns row">
+                <div class="butn col-lg-4" data-id="description">DESCRIPTION</div>
+                <div class="butn  col-lg-4" data-id="aditional">ADITIONAL-INFORMATION</div>
+                <div class="butn  col-lg-4" data-id="rewiews">REWIEWS</div>
+            </div>
+            <div class="cards">
+                <div style="padding: 2rem;" class="cart" id="description">
+                    <div class="text">
+                        <div class="text-top">
+                            <h3>The power of flowers</h3>
+                        </div>
+                        <div class="text-bottom">
+
+                            Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante
+
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 2rem;" class="cart " id="aditional">
+                    <div class="text">
+                        <div class="text-top">
+                            <p>weight: <span> 1kg</span></p>
+                        </div>
+                        <div class="text-bottom">
+                            <p>Dimensions: <span> 30 x 30 x 50 cm</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart " id="rewiews">
+                    <div class="container">
+                        <div class="head">
+                            <h3>Rewiews</h3>
+                        </div>
+                        <div class="user row">
+                            <div class="col col-lg-2 user-img">
+                                <img src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/user-img-1-100x100.png" alt="">
+                            </div>
+                            <div class=" col col-lg-10">
+                                <div class="user-name">
+                                    <p>JOSHUA GARCIA</p>
+                                </div>
+                                <div class="user-descript">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user row">
+                            <div class=" col col-lg-2 user-img">
+                                <img src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/user-img-2-100x100.png" alt="">
+
+                            </div>
+                            <div class="col col-lg-10 user-descript">
+                                <div class="user-name">
+                                    <p>JOAN STANLEY </p>
+                                </div>
+                                <div class="user-descript">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form">
+                            <div class="info">
+                                <h2>Add a review</h2>
+                                <P>
+                                    Your email address will not be published. Required fields are marked *
+
+                                    <br>  Your review*
+                                </P>
+                            </div>
+                            <form action="">
+                                <input style="height: 10rem;" class="form-control" type="textarea">
+                                <label for="name">Name*</label>
+                                <input class="form-control" type="text" id="name">
+
+                                <label for="email">Email*</label>
+                                <input class="form-control" type="email" id="email">
+                                <input style="margin-left: -34rem; margin-top: 1rem;" type="checkbox">
+                                <div class="chekbox-text">
+                                    <p>
+                                        Save my name, email, and website in this browser for the next time I comment.
+                                    </p>
+
+                                </div>
+                                <div class="mybtn">
+                                    <button value="submit">SUBMIT</button>
+                                </div>
+                            </form>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <section id="cards">
+        <div class="card-filter">
+            <div class="cards row">
+
+                <div class="mycard col col-lg-3">
+                    <div class="img">
+                        <img width="93%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-img.jpg" alt="">
+
+                    </div>
+                    <div class="name">
+                        <a href="#">SCARLET SAGE</a>
+                    </div>
+                    <div class="price">
+                        <div class="cost">159$</div>
+                        <div class="product">Add to cart</div>
+                    </div>
+                </div>
+
+                <div class="mycard col col-lg-3">
+                    <div class="img">
+                        <img width="93%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-13-img.jpg" alt="">
+
+                    </div>
+                    <div class="name">
+                        <a href="#">SCARLET SAGE</a>
+                    </div>
+                    <div class="price">
+                        <div class="cost">159$</div>
+                        <div class="product">Add to cart</div>
+                    </div>
+                </div>
+
+                <div class="mycard col col-lg-3">
+                    <div class="img">
+                        <img width="93%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/shop-10-img.jpg" alt="">
+
+                    </div>
+                    <div class="name">
+                        <a href="#">SCARLET SAGE</a>
+                    </div>
+                    <div class="price">
+                        <div class="cost">159$</div>
+                        <div class="product">Add to cart</div>
+                    </div>
+                </div>
+                <div class="mycard col col-lg-3">
+                    <div class="img">
+                        <img width="93%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-11-img.jpg" alt="">
+
+                    </div>
+                    <div class="name">
+                        <a href="#">SCARLET SAGE</a>
+                    </div>
+                    <div class="price">
+                        <div class="cost">159$</div>
+                        <div class="product">Add to cart</div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <div class="content">
+        <div class="icon ">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+    </div>
+
+@section Scripts{ 
+<script src="~/assets/js/shop.js"></script>
+}
+
+
