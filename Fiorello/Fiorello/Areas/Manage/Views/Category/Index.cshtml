@@ -1,0 +1,81 @@
+﻿@model List<Category>
+@using Fiorello.Models
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+
+    <div class="d-flex justify-content-end mt-3 ml-3 mb-2">
+        <a asp-controller="category" asp-action="creat" class=" btn btn-outline-secondary btn-icon-text">
+            <i class="mdi mdi-upload btn-icon-prepend"></i>
+            Creat
+        </a>
+    </div>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    CategoryName
+                </th>
+                <th>
+                    Count
+                </th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Category category in Model)
+            {
+                <tr>
+                    <td>
+                        @category.Id
+                    </td>
+                    <td>
+                        @category.Name
+                    </td>
+                    <td>
+                        @category.ProductCategorys.Count
+                    </td>
+
+
+
+                    <td>
+                        <a asp-controller="category" asp-action="edit" asp-route-id="@category.Id" class="btn btn-warning btn-icon-text">
+                            <i class="mdi mdi-alert btn-icon-prepend"></i>
+                            Edit
+                        </a>
+
+                        <a class="btn btn-danger btn-icon-text delete-item">
+                            <i class="mdi mdi-file-check btn-icon-append"></i>
+                          Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+
+
+    </table>
+
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item @(ViewBag.CurrentPage==1 ? "disabled" : "")">
+                <a class="page-link " asp-controller="category" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+            </li>
+            @for (int i = 1; i <= ViewBag.TotalPage; i++)
+            {
+                <li class="page-item"><a class="page-link" asp-controller="category" asp-action="index" asp-route-page="@i">@i</a></li>
+            }
+
+            <li class="page-item @(ViewBag.TotalPage==ViewBag.CurrentPage ? "disabled" : "")" >
+                <a  class="page-link" asp-controller="category" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+

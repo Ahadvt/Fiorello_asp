@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eySjtFVNhW/MbmS5Dnllrqu3621QuOG5XWtF0f05yykqEQEMtkuuSFJ+IYGxYyiVlNRFSTZu0I0jvRhj/mcm3A==",
+  "dgSpecHash": "VLXzJU/fANDLy/qiHY4Tb1ptNrX9Elxk6BAF3fiuZjQ9F0PB8TG7Cc650JO4LkW66W7g9cYH2UjQ6bIt1kdCdQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Desktop\\asp-netCore\\task-getdatafrom database\\fiorellotask\\Fiorello\\Fiorello\\Fiorello.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Desktop\\Fiorello_asp\\Fiorello\\Fiorello\\Fiorello.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
