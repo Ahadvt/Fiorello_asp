@@ -8,7 +8,7 @@
 
         @foreach (var img in item.Product.ProductImgs)
         {
-        <a asp-controller="flower" asp-action="details" asp-route-id="@item.Product.Id" data-aos-offset="100">
+        <a asp-controller="flower" asp-action="details" asp-route-categoryID="@Model.productCategories.FirstOrDefault().CategoryId" asp-route-id="@item.Product.Id" data-aos-offset="100">
             <div class="img">
                 <img src="@img.Img" alt="">
             </div>

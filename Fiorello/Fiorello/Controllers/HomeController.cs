@@ -32,7 +32,6 @@ namespace Fiorello.Controllers
                 carusels=_context.Carusels.ToList(),
                 categories=_context.Categories.ToList(),
                 productCategories=_context.ProductCategories.Include(c=>c.Category).Include(p=>p.Product).ThenInclude(i=>i.ProductImgs).Include(b=>b.Product.Discaunt).ToList(),
-
             };
             return View(homeVm);
         }

@@ -13,7 +13,7 @@
 <section id="cards">
     <div class="card-filter">
         <div class=" cards row">
-            <partial name="/Views/Shared/_DisplayProductPartial.cshtml" />
+            @await Html.PartialAsync("_DisplayProductPartial")
         </div>
         </div>
     </section>

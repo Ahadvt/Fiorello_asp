@@ -32,11 +32,21 @@ namespace Fiorello.Controllers
                  productCategories= _context.ProductCategories.Include(c => c.Category).Include(p => p.Product).ThenInclude(i => i.ProductImgs).Include(b => b.Product.Discaunt).Skip((page - 1) * 2).Take(2).ToList()
             };
             return View(homeVM);
+
+            
         }
-        public IActionResult Details(int id)
+        public IActionResult Details(int id,int categoryID)
         {
            
             Product product = _context.Products.Include(p=>p.ProductCategorys).ThenInclude(px=>px.Category).Include(p=> p.ProductImgs).Include(p=> p.Discaunt).FirstOrDefault(p=>p.Id==id);
+
+            HomeVM homevm = new HomeVM
+            {
+                productCategories = _context.ProductCategories.Include(p => p.Category).Include(p => p.Product).ThenInclude(p=>p.ProductImgs).Include(p=>p.Product.Discaunt).Where(b=>b.CategoryId== categoryID).Take(2).ToList()
+            };
+            ViewBag.Product = homevm;
+
+
             return View(product);
         }
         List<Product> products;

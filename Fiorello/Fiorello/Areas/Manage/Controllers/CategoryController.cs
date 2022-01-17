@@ -84,5 +84,16 @@ namespace Fiorello.Areas.Manage.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete(int id)
+        {
+            Category category = _context.Categories.FirstOrDefault(c => c.Id == id);
+            if (category == null) return Json(new {status=404 });
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+            return Json(new { status=200});
+         
+
+        }
     }
 }

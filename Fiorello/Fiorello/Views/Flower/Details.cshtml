@@ -1,8 +1,10 @@
 ﻿
 @model Product 
-@using Fiorello.Models
+
 @{
     ViewData["Title"] = "Details";
+    HomeVM homeVM = ViewBag.Product;
+
 }
 
 
@@ -212,63 +214,7 @@
         <div class="card-filter">
             <div class="cards row">
 
-                <div class="mycard col col-lg-3">
-                    <div class="img">
-                        <img width="93%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-img.jpg" alt="">
-
-                    </div>
-                    <div class="name">
-                        <a href="#">SCARLET SAGE</a>
-                    </div>
-                    <div class="price">
-                        <div class="cost">159$</div>
-                        <div class="product">Add to cart</div>
-                    </div>
-                </div>
-
-                <div class="mycard col col-lg-3">
-                    <div class="img">
-                        <img width="93%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-13-img.jpg" alt="">
-
-                    </div>
-                    <div class="name">
-                        <a href="#">SCARLET SAGE</a>
-                    </div>
-                    <div class="price">
-                        <div class="cost">159$</div>
-                        <div class="product">Add to cart</div>
-                    </div>
-                </div>
-
-                <div class="mycard col col-lg-3">
-                    <div class="img">
-                        <img width="93%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/shop-10-img.jpg" alt="">
-
-                    </div>
-                    <div class="name">
-                        <a href="#">SCARLET SAGE</a>
-                    </div>
-                    <div class="price">
-                        <div class="cost">159$</div>
-                        <div class="product">Add to cart</div>
-                    </div>
-                </div>
-                <div class="mycard col col-lg-3">
-                    <div class="img">
-                        <img width="93%" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-11-img.jpg" alt="">
-
-                    </div>
-                    <div class="name">
-                        <a href="#">SCARLET SAGE</a>
-                    </div>
-                    <div class="price">
-                        <div class="cost">159$</div>
-                        <div class="product">Add to cart</div>
-                    </div>
-                </div>
-
-
-
+               @await Html.PartialAsync("_DisplayProductPartial",homeVM)
 
 
 

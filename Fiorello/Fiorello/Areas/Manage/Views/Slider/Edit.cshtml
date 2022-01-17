@@ -1,0 +1,47 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card-body">
+    <div>
+        <h4>Sliderimg</h4>
+        <img width="100" src="~/assets/img/@Model.Img" />
+    </div>
+    <div>
+        <h4>Signature Img</h4>
+        <img width="100" src="~/assets/img/@Model.SignatureImg" />
+    </div>
+
+    <form method="post" class="forms-sample" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="@Model.ImageFile" for="exampleInputUsername1">sliderImg</label>
+            <input asp-for="@Model.ImageFile" accept="image/*" class="form-control" id="exampleInputUsername1">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.ImageFile"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.SignatuteImgFile" for="exampleInputUsername1">SignatureImg</label>
+            <input asp-for="@Model.SignatuteImgFile" accept="image/*" class="form-control" id="exampleInputUsername1">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.SignatuteImgFile"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Title" for="exampleInputUsername1">Title</label>
+            <input asp-for="@Model.Title" type="text" class="form-control" id="exampleInputUsername1">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Title"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Description" for="exampleInputUsername1">Descript</label>
+            <input asp-for="@Model.Description" type="text" class="form-control" id="exampleInputUsername1">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Description"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary me-2">Submit</button>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
+
+

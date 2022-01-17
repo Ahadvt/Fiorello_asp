@@ -1,13 +1,13 @@
-﻿@model List<Category>
-@using Fiorello.Models
+﻿@model List<Slider>
 @{
     ViewData["Title"] = "Index";
 }
 
-<div class="container">
 
+
+<div class="container">
     <div class="d-flex justify-content-end mt-3 ml-3 mb-2">
-        <a asp-controller="category" asp-action="creat" class=" btn btn-outline-secondary btn-icon-text">
+        <a asp-controller="slider" asp-action="creat" class=" btn btn-outline-secondary btn-icon-text">
             <i class="mdi mdi-upload btn-icon-prepend"></i>
             Creat
         </a>
@@ -19,40 +19,52 @@
                     #
                 </th>
                 <th>
-                    CategoryName
+                    SliderImg
                 </th>
                 <th>
-                    Count
+                    SliderTitle
                 </th>
-                <th></th>
+                <th>
+                    SliderDescript
+                </th>
+                <th>
+                    Signautreimage
+                </th>
 
             </tr>
         </thead>
         <tbody>
-            @foreach (Category category in Model)
+            @foreach (Slider Slider in Model)
             {
                 <tr>
                     <td>
-                        @category.Id
+                        @Slider.Id
                     </td>
                     <td>
-                        @category.Name
+                        <img width="100" height="100" src="~/assets/img/@Slider.Img" />
                     </td>
                     <td>
-                        @category.ProductCategorys.Count
+                        <img src="~/assets/img/@Slider.SignatureImg" />
+                    </td>
+                    <td>
+                        @Slider.Title
+                    </td>
+                    <td>
+                        @Slider.Description
                     </td>
 
 
 
+
                     <td>
-                        <a asp-controller="category" asp-action="edit" asp-route-id="@category.Id" class="btn btn-warning btn-icon-text">
+                        <a asp-controller="slider" asp-action="edit" asp-route-id="@Slider.Id" class="btn btn-warning btn-icon-text">
                             <i class="mdi mdi-alert btn-icon-prepend"></i>
                             Edit
                         </a>
 
-                        <a asp-controller="category" asp-action="delete" asp-route-Id="@category.Id" class="btn btn-danger btn-icon-text delete-item">
+                        <a asp-controller="slider" asp-action="delete" asp-route-id="@Slider.Id" class="btn btn-danger btn-icon-text delete-item">
                             <i class="mdi mdi-file-check btn-icon-append"></i>
-                          Delete
+                            Delete
                         </a>
                     </td>
                 </tr>
@@ -60,28 +72,11 @@
 
 
     </table>
-
-    <nav aria-label="...">
-        <ul class="pagination">
-            <li class="page-item @(ViewBag.CurrentPage==1 ? "disabled" : "")">
-                <a class="page-link " asp-controller="category" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
-            </li>
-            @for (int i = 1; i <= ViewBag.TotalPage; i++)
-            {
-                <li class="page-item"><a class="page-link" asp-controller="category" asp-action="index" asp-route-page="@i">@i</a></li>
-            }
-
-            <li class="page-item @(ViewBag.TotalPage==ViewBag.CurrentPage ? "disabled" : "")" >
-                <a  class="page-link" asp-controller="category" asp-action="index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
-            </li>
-        </ul>
-    </nav>
-
 </div>
 
-@section Scripts{ 
+@section Scripts{
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
+    <script>
     $(".delete-item").click(function (e) {
         e.preventDefault()
         swal({
@@ -102,18 +97,17 @@
                     );
                     swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
-                        
+
                     });
                 } else {
                     swal("Your imaginary file is safe!");
                 }
             });
-   
+
     })
 
-</script>
-   
+    </script>
+
 
 
 }
-
