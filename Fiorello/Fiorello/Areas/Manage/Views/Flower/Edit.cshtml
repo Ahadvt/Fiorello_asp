@@ -1,0 +1,135 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit";
+    @section Css{
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    }
+}
+<div class="card-body">
+
+    <form method="post" class="forms-sample" enctype="multipart/form-data">
+
+
+        <div class="form-group">
+            <label asp-for="@Model.Name">ProductName</label>
+            <input asp-for="@Model.Name" type="text" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Name"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Price">Price</label>
+            <input asp-for="@Model.Price" type="text" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Price"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Skucode">SkuCode</label>
+            <input asp-for="@Model.Skucode" type="text" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Skucode"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Weight">Weight</label>
+            <input asp-for="@Model.Weight" type="text" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Weight"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.DiscauntId">Weight</label>
+            <select asp-for="@Model.DiscauntId" asp-items="@(new SelectList(ViewBag.Discaunt,"Id","Precenet"))" class="form-control">
+                <option value="0">Select Discaunt</option>
+            </select>
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.DiscauntId"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.CategoryIds">Weight</label>
+            <label asp-for="@Model.CategoryIds">Weight</label>
+
+            <select asp-for="@Model.CategoryIds" class="form-select" asp-items="@(new SelectList(ViewBag.Category,"Id","Name"))">
+                @foreach (var category in ViewBag.Category)
+                {
+                    if (Model.ProductCategorys.FirstOrDefault(pc => pc.CategoryId == category.Id) != null)
+                    {
+                        <option value="@category.Id" selected>@category.Name</option>
+                    }
+                }
+            </select>
+
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.CategoryIds"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Instock">INstock</label>
+            <input asp-for="@Model.Instock">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Instock"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.ImageFile">Img</label>
+            <input asp-for="@Model.ImageFile" class="form-control instal-image">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.ImageFile"></span>
+        </div>
+
+        <div class="d-flex mb-2 images">
+
+            @foreach (var img in Model.ProductImgs)
+            {
+
+                if (img.IsMain == true)
+                {
+            <div class="imgParent main" data-id="main" style="position:relative">
+
+                <img width="100" src="~/assets/img/@img.Img" />
+                <i style="position:absolute;top:5px;right:5px; cursor:pointer; color:orange" class="fas fa-times removeimg"></i>
+                <h6 class="main">main img</h6>
+                <input type="hidden" name="ImgIds" value="@img.Id" />
+            </div>
+                }
+                else
+                {
+                    <div class="imgParent" data-id="other" style="position:relative">
+
+                        <img width="100" src="~/assets/img/@img.Img" />
+                        <i style="position:absolute;top:5px;right:5px; cursor:pointer; color:orange" class="fas fa-times removeimg"></i>
+                        <input type="hidden" name="ImgIds" value="@img.Id" />
+                    </div>
+                }
+            }
+        </div>
+
+        <button type="submit" class="save btn btn-primary me-2">Submit</button>
+    </form>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            let imgParent = $(".imgParent")
+            let main = "main"
+            console.log($(".instal-image").val())
+            $(".removeimg").click(function () {
+                
+                if ($(this).parent().attr("data-id") == "main") {
+                    if (confirm("siz main sekli silmek isdiyirsiz sileceyiviz teqadirde yeniden yuklemek mecburiyetindesiz eks teqdirde submit olunmayacag")) {
+                        $(this).parent().remove()
+                    }
+                } else {
+                    $(this).parent().remove()
+                }
+            })
+
+            $(".save").click(function (e) {
+               
+                if ($(".main").attr("data-id") != "main"  ) {
+
+                    if ($(".instal-image").val() == "") {
+                        e.preventDefault()
+                    }
+                   
+                } else {
+                    location.reload()
+                }
+            })
+        })
+
+    </script>
+}
+

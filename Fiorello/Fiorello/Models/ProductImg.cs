@@ -9,7 +9,8 @@ namespace Fiorello.Models
     {
         public int Id { get; set; }
         public string Img { get; set; }
-     
+        public bool IsMain { get; set; }
+
         public int ProductID { get; set; }
 
         public Product Product { get; set; }

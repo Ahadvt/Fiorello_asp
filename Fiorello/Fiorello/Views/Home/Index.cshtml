@@ -11,21 +11,20 @@
 
         <section id="img-animation">
             <div class="img-text">
-                @foreach (var item in Model.sliders)
-                {
+               
                     <div id="slideText" class="text">
                         <div class="text-top">
-                            <h2>Send <span style="color: red;">flowers</span> like <br>@item.Title</h2>
+                            <h2>Send <span style="color: red;">flowers</span> like <br>@Model.sliders.FirstOrDefault().Title</h2>
                         </div>
                         <div class="text-center">
-                            <p>@item.Description</p>
+                            <p>@Model.sliders.FirstOrDefault().Description</p>
 
                         </div>
                         <div class="img">
-                            <img src="assets/img/@item.SignatureImg" alt="">
+                            <img src="assets/img/@Model.sliders.FirstOrDefault().SignatureImg" alt="">
                         </div>
                     </div>
-                }
+                
             </div>
 
         </section>
@@ -90,7 +89,7 @@
 
                 <div class="cards row">
                    
-                    @await Html.PartialAsync("_DisplayProductPartial")*
+                    @await Html.PartialAsync("_DisplayProductPartial")
                     
                 </div>
             </div>

@@ -1,0 +1,119 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container">
+    <div class="d-flex justify-content-end mt-3 ml-3 mb-2">
+        <a asp-controller="flower" asp-action="creat" class=" btn btn-outline-secondary btn-icon-text">
+            <i class="mdi mdi-upload btn-icon-prepend"></i>
+            Creat
+        </a>
+    </div>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    ProductImg
+                </th>
+                <th>
+                    ProductName
+                </th>
+                <th>
+                    ProductPrice
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Product product in Model)
+            {
+                <tr>
+                    <td>
+                        @product.Id
+                    </td>
+                    
+                    <td>
+                        @if (product.ProductImgs.FirstOrDefault(i => i.IsMain = true).Img.Contains("https://"))
+                        {
+                            <img src="@product.ProductImgs.FirstOrDefault().Img" />
+                        }
+                        else
+                        {
+
+                            <img src="~/assets/img/@product.ProductImgs.FirstOrDefault(i=>i.IsMain=true).Img" />
+                        }
+                    </td>
+                    <td>
+                        @product.Name
+                    </td>
+                    <td>
+                        @product.Price
+                    </td>
+
+
+
+
+                    <td>
+                        <a asp-controller="flower" asp-action="edit" asp-route-id="@product.Id" class="btn btn-warning btn-icon-text">
+                            <i class="mdi mdi-alert btn-icon-prepend"></i>
+                            Edit
+                        </a>
+
+                        <a asp-controller="flower" asp-action="delete" asp-route-id="@product.Id" class="btn btn-danger btn-icon-text delete-item">
+                            <i class="mdi mdi-file-check btn-icon-append"></i>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+
+
+    </table>
+</div>
+
+@section Scripts{
+
+
+   
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $(".delete-item").click(function (e) {
+            e.preventDefault()
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        var link = $(this).attr("href")
+                        fetch(link).then(response => response.json()).then(data => {
+                            if (data.status == 200) {
+                                location.reload(true)
+                            }
+                        }
+                        );
+                        swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+
+        })
+
+    </script>
+
+}
+
+

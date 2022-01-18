@@ -16,6 +16,7 @@ namespace Fiorello.ViewModels
         public List<ProductCategory> productCategories { get; set; }
         public List<Category> categories { get; set; }
         public List<Discount> discounts { get; set; }
+        public List<Product> products { get; set; }
         
 
     }

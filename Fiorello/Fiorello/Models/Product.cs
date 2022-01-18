@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,6 +25,16 @@ namespace Fiorello.Models
         public List<ProductImg> ProductImgs { get; set; }
         public int? DiscauntId { get; set; }
         public Discount Discaunt { get; set; }
+
+        [NotMapped]
+        public List<int> CategoryIds { get; set; }
+
+        [NotMapped]
+        public List<IFormFile> ImageFile { get; set; }
+        [NotMapped]
+        public List<int> ImgIds { get; set; }
+
+
 
 
 

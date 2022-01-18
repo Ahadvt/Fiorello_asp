@@ -6,20 +6,30 @@
 {
     <div class="mycard  col-lg-3 col-md-6 all" data-id="@item.Category.Name.ToLower()">
 
-        @foreach (var img in item.Product.ProductImgs)
-        {
-        <a asp-controller="flower" asp-action="details" asp-route-categoryID="@Model.productCategories.FirstOrDefault().CategoryId" asp-route-id="@item.Product.Id" data-aos-offset="100">
-            <div class="img">
-                <img src="@img.Img" alt="">
-            </div>
-        </a>
-        }
+      
+
+            <a asp-controller="flower" asp-action="details" asp-route-categoryID="@Model.productCategories.FirstOrDefault().CategoryId" asp-route-id="@item.Product.Id" data-aos-offset="100">
+                <div class="img">
+                    @if (item.Product.ProductImgs.FirstOrDefault(i => i.IsMain = true).Img.Contains("https://"))
+                    {
+                        <img src="@item.Product.ProductImgs.FirstOrDefault().Img" />
+                    }
+                    else
+                    {
+                        if (@item.Product.ProductImgs.FirstOrDefault().IsMain==true )
+                        {
+                            <img src="~/assets/img/@item.Product.ProductImgs.FirstOrDefault().Img" />
+                        }
+                    }
+                </div>
+            </a>
         
+
         <div class="name">
             <p style="color: #757575;" href="#">@item.Product.Name</p>
         </div>
         <div class="price">
-            <div class="adCart product"><a  style="text-decoration:none" asp-controller="flower" asp-action="addtocard" asp-route-id="@item.Product.Id">Add to cart</a></div>
+            <div class="adCart product"><a style="text-decoration:none" asp-controller="flower" asp-action="addtocard" asp-route-id="@item.Product.Id">Add to cart</a></div>
 
             @if (item.Product.DiscauntId == null)
             {
@@ -29,8 +39,9 @@
             {
                 <div class="cost">
                     <span style="text-decoration: line-through;">@item.Product.Price</span>
-            @(item.Product.Price*(100-item.Product.Discaunt.Precenet)/100)$  </div>
-                
+                    @(item.Product.Price*(100-item.Product.Discaunt.Precenet)/100)$
+                </div>
+
             }
         </div>
     </div>

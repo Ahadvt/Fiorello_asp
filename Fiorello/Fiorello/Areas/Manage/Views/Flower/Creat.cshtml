@@ -1,0 +1,68 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Creat";
+}
+
+<div class="card-body">
+
+    <form method="post" class="forms-sample" enctype="multipart/form-data">
+
+
+        <div class="form-group">
+            <label asp-for="@Model.Name">ProductName</label>
+            <input asp-for="@Model.Name" type="text" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Name"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Price">Price</label>
+            <input asp-for="@Model.Price" type="text" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Price"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Skucode">SkuCode</label>
+            <input asp-for="@Model.Skucode" type="text" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Skucode"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Weight">Weight</label>
+            <input asp-for="@Model.Weight" type="text" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Weight"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.DiscauntId">Weight</label>
+            <select asp-for="@Model.DiscauntId" asp-items="@(new SelectList(ViewBag.Discaunt,"Id","Precenet"))" class="form-control">
+                <option value="0">Select Discaunt</option>
+            </select>
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.DiscauntId"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.CategoryIds">Weight</label>
+            <select asp-for="@Model.CategoryIds" class="form-select" asp-items="@(new SelectList(ViewBag.Category,"Id","Name"))">
+
+                >
+            </select>
+           
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.CategoryIds"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Instock">INstock</label>
+            <input asp-for="@Model.Instock">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.Instock"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.ImageFile">Img</label>
+            <input asp-for="@Model.ImageFile" class="form-control">
+            <span class="mt-2 text text-danger" asp-validation-for="@Model.ImageFile"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary me-2">Submit</button>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

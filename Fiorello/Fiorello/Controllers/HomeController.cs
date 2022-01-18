@@ -21,7 +21,7 @@ namespace Fiorello.Controllers
             _context = context;
         }
            
-        public IActionResult Index()
+        public IActionResult Index(int page)
         {
             HomeVM homeVm = new HomeVM()
             {
