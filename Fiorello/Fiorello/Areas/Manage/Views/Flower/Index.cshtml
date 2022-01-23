@@ -37,7 +37,7 @@
                     <td>
                         @product.Id
                     </td>
-                    
+
                     <td>
                         @if (product.ProductImgs.FirstOrDefault(i => i.IsMain = true).Img.Contains("https://"))
                         {
@@ -80,7 +80,7 @@
 @section Scripts{
 
 
-   
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         $(".delete-item").click(function (e) {

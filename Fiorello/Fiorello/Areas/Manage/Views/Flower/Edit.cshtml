@@ -12,22 +12,22 @@
 
         <div class="form-group">
             <label asp-for="@Model.Name">ProductName</label>
-            <input asp-for="@Model.Name" type="text" class="form-control">
+            <input asp-for="@Model.Name"  class="form-control">
             <span class="mt-2 text text-danger" asp-validation-for="@Model.Name"></span>
         </div>
         <div class="form-group">
             <label asp-for="@Model.Price">Price</label>
-            <input asp-for="@Model.Price" type="text" class="form-control">
+            <input asp-for="@Model.Price"  class="form-control">
             <span class="mt-2 text text-danger" asp-validation-for="@Model.Price"></span>
         </div>
         <div class="form-group">
             <label asp-for="@Model.Skucode">SkuCode</label>
-            <input asp-for="@Model.Skucode" type="text" class="form-control">
+            <input asp-for="@Model.Skucode" class="form-control">
             <span class="mt-2 text text-danger" asp-validation-for="@Model.Skucode"></span>
         </div>
         <div class="form-group">
             <label asp-for="@Model.Weight">Weight</label>
-            <input asp-for="@Model.Weight" type="text" class="form-control">
+            <input asp-for="@Model.Weight"  class="form-control">
             <span class="mt-2 text text-danger" asp-validation-for="@Model.Weight"></span>
         </div>
 
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="@Model.CategoryIds">Weight</label>
+            <label asp-for="@Model.CategoryIds" class="form-label">Weight</label>
             <label asp-for="@Model.CategoryIds">Weight</label>
 
             <select asp-for="@Model.CategoryIds" class="form-select" asp-items="@(new SelectList(ViewBag.Category,"Id","Name"))">
