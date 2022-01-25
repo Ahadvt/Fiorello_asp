@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiorello.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220120203012_Createdappuser")]
-    partial class Createdappuser
+    [Migration("20220124001149_createduser")]
+    partial class createduser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

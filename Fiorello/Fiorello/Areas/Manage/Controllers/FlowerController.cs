@@ -2,6 +2,7 @@
 using Fiorello.DAL;
 using Fiorello.Models;
 using Fiorello.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 namespace Fiorello.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class FlowerController : Controller
     {
         private readonly AppDbContext _context;

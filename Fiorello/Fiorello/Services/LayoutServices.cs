@@ -2,6 +2,7 @@
 using Fiorello.Models;
 using Fiorello.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
@@ -15,10 +16,13 @@ namespace Fiorello.Services
     {
         private readonly AppDbContext _context;
         private readonly IHttpContextAccessor _Httpcontext;
-        public LayoutServices(AppDbContext context , IHttpContextAccessor httpContext )
+        private readonly UserManager<AppUser> _userManager;
+
+        public LayoutServices(AppDbContext context , IHttpContextAccessor httpContext,UserManager<AppUser> userManager )
         {
             _context = context;
             _Httpcontext = httpContext;
+            _userManager = userManager;
         }
 
         public Settings GetSettings()
@@ -26,6 +30,7 @@ namespace Fiorello.Services
             Settings data = _context.Settings.FirstOrDefault();
             return data;
         }
+       
 
         public BasketVm ShowBasket()
         {

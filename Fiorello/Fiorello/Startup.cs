@@ -37,6 +37,7 @@ namespace Fiorello
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
             services.AddScoped<LayoutServices>();
+            services.AddSession(options => { options.IdleTimeout = TimeSpan.FromSeconds(100); });
 
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
@@ -56,6 +57,7 @@ namespace Fiorello
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.AllowedForNewUsers = true;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+            
 
         }
 
@@ -74,10 +76,10 @@ namespace Fiorello
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

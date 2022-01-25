@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Fiorello.Migrations
 {
-    public partial class Createdappuser : Migration
+    public partial class createduser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

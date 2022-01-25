@@ -13,11 +13,11 @@ namespace Fiorello.ViewModels
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [DataType(DataType.Password)]
-        public string CurrentPaswor { get; set; }
+        public string CurrentPasword { get; set; }
         [DataType(DataType.Password)]
-        public string NewPasword { get; set; }
+        public string Pasword { get; set; }
         [DataType(DataType.Password)]
-        [Compare(nameof(NewPasword))]
+        [Compare(nameof(Pasword))]
         public string ConfirmPasword { get; set; }
       
     }

@@ -16,203 +16,62 @@
 </head>
 <body>
 
-    
-        <header>
-            <nav>
-                <div class="head ">
 
-                    <div class="logo col col-lg-3">
-                        <a href="./Home.html"><img src="~/assets/img/@layoutservices.GetSettings().Logo" alt=""></a>
+    <header>
+        <nav>
+            <div class="head ">
+
+
+
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+
+                    <div style="position:absolute; right:-900px; top:70px; width:100%;" class="row">
+                        <a asp-controller="account" asp-action="login" style="width:100px; margin-right:10px;" class="btn btn-outline-primary ">lOGIN</a>
+                        <a asp-controller="account" asp-action="register" style="width:100px;" class="btn btn-outline-primary">Register</a>
                     </div>
-                    <div class="responsivemenu">
-                        <div class="icon-menu">
-                            <i class="fas fa-bars"></i>
+                }
+                else
+                {
+                    if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    {
+
+                        <div style="position:absolute; right:-900px; top:70px; width:100%;" class="row">
+                            <a asp-controller="account" asp-action="login" style="width:100px; margin-right:10px;" class="btn btn-outline-primary ">lOGIN</a>
+                            <a asp-controller="account" asp-action="register" style="width:100px;" class="btn btn-outline-primary">Register</a>
                         </div>
-                        <div class="menu menuresponsive ">
-                            <div class="icon-close">
-                                <i class="fas fa-times"></i>
-                            </div>
-
-                            <ul class="menu-list-res">
-                                <li class="home li">
-                                    <a href="#">HOME</a>
-                                    <ul class="inhome ilini">
-                                        <li><a href="">MAINE-HOME</a></li>
-                                        <li><a href="">Grid Home</a></li>
-                                        <li><a href="">Flower Shop</a></li>
-                                        <li><a href="">Animated Slider</a></li>
-                                        <li><a href="">Metro Showcase</a></li>
-                                        <li><a href="">Carousel Showcase</a></li>
-                                        <li><a href="">Landing</a></li>
-                                    </ul>
-
-                                </li>
-                                <li class="li">
-                                    <a href="#">PAGES</a>
-                                    <ul class="pages">
-                                        <li><a href="">About Us </a></li>
-                                        <li><a href="">FAQ Page</a></li>
-                                        <li><a href="">Contact Us</a></li>
-                                    </ul>
-                                </li>
-                                <li class="shop li">
-                                    <a href="#">SHOP</a>
-                                    <div class="shopInli li">
-                                        <ul class="shop">
-                                            <li><h4>Product Types </h4></li>
-                                            <li><a href="">Standard Product</a></li>
-                                            <li><a href="">Grouped Product</a></li>
-                                            <li><a href="">Virtual Product</a></li>
-                                            <li><a href="">External Product</a></li>
-                                            <li><a href=""> Downloadable Product</a></li>
-                                            <li><a href="">On Sale Product</a></li>
-                                            <li><a href="">Out Of Stock Product</a></li>
-                                            <li><a href="">New Product</a></li>
-                                        </ul>
-                                        <ul>
-                                            <li><h4>Shop Pages</h4></li>
-                                            <li><a href="">My Account</a></li>
-                                            <li><a href="">Cart</a></li>
-                                            <li><a href="">Checkout</a></li>
-                                            <li><a href="">Orders</a></li>
-                                            <li><a href=""> Downloads</a></li>
-
-                                        </ul>
-
-                                        <ul>
-                                            <li><h4>Shop Types</h4></li>
-                                            <li><a href="">Product List</a></li>
-                                            <li><a href="">Without Sidebar</a></li>
-                                            <li><a href="">With Category Filter</a></li>
-                                            <li><a href="">Shop Carousel</a></li>
-                                            <li><a href=""> Product Categories</a></li>
-                                            <li><a href=""> Single Category</a></li>
-
-                                        </ul>
-
-                                        <ul>
-                                            <li><h4>Shop Layouts</h4></li>
-                                            <li><a href=""> Two Columns Grid</a></li>
-                                            <li><a href="">Three Columns Grid</a></li>
-                                            <li><a href="">Four Columns Grid</a></li>
-                                            <li><a href="">Shop Carousel</a></li>
-                                            <li><a href=""> Five Columns Wide</a></li>
-                                            <li><a href=""> Six Columns Wide</a></li>
-
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="li">
-                                    <a href="#">PORTFOLIO</a>
-                                    <ul class="portfolio">
-                                        <li><a href="">Standard</a></li>
-                                        <li><a href="">Gallery</a></li>
-                                        <li><a href="">Masonry</a></li>
-                                        <li>
-                                            <a href="">Portfolio Layouts</a>
-                                            <ul class="Layouts">
-                                                <li><a href="">Two Columns</a></li>
-                                                <li><a href="">Three Columns</a></li>
-                                                <li><a href="">Four Columns</a></li>
-                                                <li><a href="">Four Columns Wide</a></li>
-                                                <li><a href="">Five Columns Wide</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="">Portfolio Singl</a>
-                                            <ul class="Single">
-                                                <li><a href="">Small Images</a></li>
-                                                <li><a href="">Small Slider</a></li>
-                                                <li><a href="">Big Images</a></li>
-                                                <li><a href="">Big Slider</a></li>
-                                                <li><a href="">Gallery</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="li">
-                                    <a href="#">BLOG</a>
-                                    <ul class="blog">
-                                        <li><a href="">Masonry </a></li>
-                                        <li><a href="">Standard</a></li>
-                                        <li class="Post">
-                                            <a href="">Post Types</a>
-                                            <ul class="post-types">
-                                                <li><a href="">Standard</a></li>
-                                                <li><a href="">Gallery</a></li>
-                                                <li><a href="">Link</a></li>
-                                                <li><a href="">Quote</a></li>
-                                                <li><a href="">Audio</a></li>
-                                                <li><a href="">Video</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="elements li">
-                                    <a href="#">ELEMENTS</a>
-                                    <ul class="elementInli">
-                                        <li class="clasic">
-                                            <a href="">
-                                                Classic
-                                            </a>
-                                            <ul class="inclassic">
-                                                <li><a href="./accordions.html">Accordions </a></li>
-                                                <li><a href="">Tabs</a></li>
-                                                <li><a href="">Buttons</a></li>
-                                                <li><a href="">Video Button</a></li>
-                                                <li><a href="">Contact Form</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="Graphic">
-
-                                            <a href="">Inographic</a>
-                                            <ul class="InGraphic">
-                                                <li><a href="">Blog List</a></li>
-                                                <li><a href=""> Counters</a></li>
-                                                <li><a href="">Countdown</a></li>
-                                                <li><a href="">Google Maps</a></li>
-                                                <li><a href="">Progress Bar</a></li>
-                                                <li><a href="">Pie Charts</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="Interactive">
-
-                                            <a href="">Interactive</a>
-                                            <ul class="inInteractive">
-                                                <li><a href="">Image Gallery</a></li>
-                                                <li><a href="">Testimonials</a></li>
-                                                <li><a href="">Team</a></li>
-                                                <li><a href="">Banner</a></li>
-                                                <li><a href="">Shop List</a></li>
-                                                <li><a href="">Portfolio List</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="Tyography">
-
-                                            <a href="">Tyography</a>
-                                            <ul class="inTyography">
-                                                <li><a href="">Headings</a></li>
-                                                <li><a href="">Columns</a></li>
-                                                <li><a href="">Section Title</a></li>
-                                                <li><a href="">Blockquote</a></li>
-                                                <li><a href="">Dropcaps</a></li>
-                                                <li><a href="">Highlights</a></li>
-                                                <li><a href="">Separators</a></li>
-                                                <li><a href="">Custom Font</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                    }
+                    else
+                    {
+                        <div style="position:absolute; right:-900px; top:70px; width:100%;" class="row">
+                            <a asp-controller="account" asp-action="logout" style="width:100px; margin-right:10px;" class="btn btn-outline-primary ">Logout</a>
+                            <a asp-controller="account" asp-action="edit" style="width:100px;" class="btn btn-outline-primary">Edit</a>
                         </div>
+                    }
+
+
+                }
+
+
+
+                <div class="logo col col-lg-3">
+                    <a href="./Home.html"><img src="~/assets/img/@layoutservices.GetSettings().Logo" alt=""></a>
+                </div>
+                <div class="responsivemenu">
+                    <div class="icon-menu">
+                        <i class="fas fa-bars"></i>
                     </div>
+                    <div class="menu menuresponsive ">
+                        <div class="icon-close">
+                            <i class="fas fa-times"></i>
+                        </div>
 
-                    <div class="menu col col-lg-7">
-                        <ul class="menu-list mainmenu">
-                            <li class="home">
-                                <a href="./Home.html">HOME</a>
-                                <ul class="inhome">
-                                    <li><a href="./Home.html">MAINE-HOME</a></li>
+                        <ul class="menu-list-res">
+                            <li class="home li">
+                                <a href="#">HOME</a>
+                                <ul class="inhome ilini">
+                                    <li><a href="">MAINE-HOME</a></li>
                                     <li><a href="">Grid Home</a></li>
                                     <li><a href="">Flower Shop</a></li>
                                     <li><a href="">Animated Slider</a></li>
@@ -222,20 +81,20 @@
                                 </ul>
 
                             </li>
-                            <li>
-                                <a href="">PAGES</a>
+                            <li class="li">
+                                <a href="#">PAGES</a>
                                 <ul class="pages">
                                     <li><a href="">About Us </a></li>
                                     <li><a href="">FAQ Page</a></li>
                                     <li><a href="">Contact Us</a></li>
                                 </ul>
                             </li>
-                            <li class="shop">
-                                <a href="">SHOP</a>
-                                <div class="shopInli">
+                            <li class="shop li">
+                                <a href="#">SHOP</a>
+                                <div class="shopInli li">
                                     <ul class="shop">
                                         <li><h4>Product Types </h4></li>
-                                        <li><a href="./shop.html">Standard Product</a></li>
+                                        <li><a href="">Standard Product</a></li>
                                         <li><a href="">Grouped Product</a></li>
                                         <li><a href="">Virtual Product</a></li>
                                         <li><a href="">External Product</a></li>
@@ -277,15 +136,14 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li>
-                                <a href="">PORTFOLIO</a>
+                            <li class="li">
+                                <a href="#">PORTFOLIO</a>
                                 <ul class="portfolio">
                                     <li><a href="">Standard</a></li>
                                     <li><a href="">Gallery</a></li>
                                     <li><a href="">Masonry</a></li>
                                     <li>
                                         <a href="">Portfolio Layouts</a>
-                                        <i style="font-size: 7px; position: absolute; right: 16px; top: 121px;" class="fas fa-chevron-right"></i>
                                         <ul class="Layouts">
                                             <li><a href="">Two Columns</a></li>
                                             <li><a href="">Three Columns</a></li>
@@ -296,7 +154,6 @@
                                     </li>
                                     <li>
                                         <a href="">Portfolio Singl</a>
-                                        <i style="font-size: 7px; position: absolute; right: 16px; top: 160px;" class="fas fa-chevron-right"></i>
                                         <ul class="Single">
                                             <li><a href="">Small Images</a></li>
                                             <li><a href="">Small Slider</a></li>
@@ -307,14 +164,13 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="">BLOG</a>
+                            <li class="li">
+                                <a href="#">BLOG</a>
                                 <ul class="blog">
                                     <li><a href="">Masonry </a></li>
                                     <li><a href="">Standard</a></li>
                                     <li class="Post">
                                         <a href="">Post Types</a>
-                                        <i style="font-size: 7px; position: absolute; right: 16px; top: 64%;" class="fas fa-chevron-right"></i>
                                         <ul class="post-types">
                                             <li><a href="">Standard</a></li>
                                             <li><a href="">Gallery</a></li>
@@ -326,24 +182,22 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="elements">
-                                <a href="">ELEMENTS</a>
+                            <li class="elements li">
+                                <a href="#">ELEMENTS</a>
                                 <ul class="elementInli">
                                     <li class="clasic">
-                                        <i style="font-size: 7px; position: absolute; left: 16px; top: 13%;" class="fas fa-chevron-left"></i>
                                         <a href="">
                                             Classic
                                         </a>
                                         <ul class="inclassic">
                                             <li><a href="./accordions.html">Accordions </a></li>
-                                            <li><a href="./tab.html">Tabs</a></li>
+                                            <li><a href="">Tabs</a></li>
                                             <li><a href="">Buttons</a></li>
                                             <li><a href="">Video Button</a></li>
                                             <li><a href="">Contact Form</a></li>
                                         </ul>
                                     </li>
                                     <li class="Graphic">
-                                        <i style="font-size: 7px; position: absolute; left: 16px; top: 37%;" class="fas fa-chevron-left"></i>
 
                                         <a href="">Inographic</a>
                                         <ul class="InGraphic">
@@ -351,12 +205,11 @@
                                             <li><a href=""> Counters</a></li>
                                             <li><a href="">Countdown</a></li>
                                             <li><a href="">Google Maps</a></li>
-                                            <li><a href="./progres-bar.html">Progress Bar</a></li>
+                                            <li><a href="">Progress Bar</a></li>
                                             <li><a href="">Pie Charts</a></li>
                                         </ul>
                                     </li>
                                     <li class="Interactive">
-                                        <i style="font-size: 7px; position: absolute; left: 16px; top: 63%;" class="fas fa-chevron-left"></i>
 
                                         <a href="">Interactive</a>
                                         <ul class="inInteractive">
@@ -364,12 +217,11 @@
                                             <li><a href="">Testimonials</a></li>
                                             <li><a href="">Team</a></li>
                                             <li><a href="">Banner</a></li>
-                                            <li><a href="./shoplist.html">Shop List</a></li>
+                                            <li><a href="">Shop List</a></li>
                                             <li><a href="">Portfolio List</a></li>
                                         </ul>
                                     </li>
                                     <li class="Tyography">
-                                        <i style="font-size: 7px; position: absolute; left: 16px; top: 84%;" class="fas fa-chevron-left"></i>
 
                                         <a href="">Tyography</a>
                                         <ul class="inTyography">
@@ -387,71 +239,250 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="icons col col-lg-2">
-                        <div class="search-icon">
-                            <i class="@layoutservices.GetSettings().SearchIcon"></i>
-                        </div>
-                        <div class="searchinput">
-                            <input type="search" placeholder="search">
-                        </div>
-                        <div class="basket-icon">
-                            <i class="@layoutservices.GetSettings().BasketIcon"></i>
-                            <span>0</span>
-                            <div class="basket-products">
+                </div>
 
-                                <div class="Basket-top">
+                <div class="menu col col-lg-7">
+                    <ul class="menu-list mainmenu">
+                        <li class="home">
+                            <a href="./Home.html">HOME</a>
+                            <ul class="inhome">
+                                <li><a href="./Home.html">MAINE-HOME</a></li>
+                                <li><a href="">Grid Home</a></li>
+                                <li><a href="">Flower Shop</a></li>
+                                <li><a href="">Animated Slider</a></li>
+                                <li><a href="">Metro Showcase</a></li>
+                                <li><a href="">Carousel Showcase</a></li>
+                                <li><a href="">Landing</a></li>
+                            </ul>
 
-                                    @foreach (var item in layoutservices.ShowBasket().basketItemVms)
-                                    {
-                                        <ul>
-                                            <li data-id="@item.Product.Id">
-                                                <div class="img">
-                                                    <img src="@foreach (var img in item.Product.ProductImgs)
-                                                    {
-                                                        @img.Img
-                                                    }
-                                                    " alt="">
-                                                </div>
-                                                <div class="delete-name">
-                                                    <div class="name">
-                                                        <p>@item.Product.Name</p>
-                                                    </div>
+                        </li>
+                        <li>
+                            <a href="">PAGES</a>
+                            <ul class="pages">
+                                <li><a href="">About Us </a></li>
+                                <li><a href="">FAQ Page</a></li>
+                                <li><a href="">Contact Us</a></li>
+                            </ul>
+                        </li>
+                        <li class="shop">
+                            <a href="">SHOP</a>
+                            <div class="shopInli">
+                                <ul class="shop">
+                                    <li><h4>Product Types </h4></li>
+                                    <li><a href="./shop.html">Standard Product</a></li>
+                                    <li><a href="">Grouped Product</a></li>
+                                    <li><a href="">Virtual Product</a></li>
+                                    <li><a href="">External Product</a></li>
+                                    <li><a href=""> Downloadable Product</a></li>
+                                    <li><a href="">On Sale Product</a></li>
+                                    <li><a href="">Out Of Stock Product</a></li>
+                                    <li><a href="">New Product</a></li>
+                                </ul>
+                                <ul>
+                                    <li><h4>Shop Pages</h4></li>
+                                    <li><a href="">My Account</a></li>
+                                    <li><a href="">Cart</a></li>
+                                    <li><a href="">Checkout</a></li>
+                                    <li><a href="">Orders</a></li>
+                                    <li><a href=""> Downloads</a></li>
 
-                                                    <i class="fas fa-times"></i>
-                                                </div>
-                                                <div class="count-price">
-                                                    <div id="@item.Product.Id" class="count">
-                                                         @item.Count x
-                                                    </div>
-                                                    <div class="price">
-                                                       @item.Price
-                                                    </div>
-                                                </div>
-                                            </li>
+                                </ul>
 
-                                        </ul>
-                                    }
+                                <ul>
+                                    <li><h4>Shop Types</h4></li>
+                                    <li><a href="">Product List</a></li>
+                                    <li><a href="">Without Sidebar</a></li>
+                                    <li><a href="">With Category Filter</a></li>
+                                    <li><a href="">Shop Carousel</a></li>
+                                    <li><a href=""> Product Categories</a></li>
+                                    <li><a href=""> Single Category</a></li>
 
+                                </ul>
 
-                                    <div class="Basket-bottom ">
-                                        <div class="total-price">
-                                            <div class="text">
-                                                Total: @layoutservices.ShowBasket().TotalPrice
+                                <ul>
+                                    <li><h4>Shop Layouts</h4></li>
+                                    <li><a href=""> Two Columns Grid</a></li>
+                                    <li><a href="">Three Columns Grid</a></li>
+                                    <li><a href="">Four Columns Grid</a></li>
+                                    <li><a href="">Shop Carousel</a></li>
+                                    <li><a href=""> Five Columns Wide</a></li>
+                                    <li><a href=""> Six Columns Wide</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="">PORTFOLIO</a>
+                            <ul class="portfolio">
+                                <li><a href="">Standard</a></li>
+                                <li><a href="">Gallery</a></li>
+                                <li><a href="">Masonry</a></li>
+                                <li>
+                                    <a href="">Portfolio Layouts</a>
+                                    <i style="font-size: 7px; position: absolute; right: 16px; top: 121px;" class="fas fa-chevron-right"></i>
+                                    <ul class="Layouts">
+                                        <li><a href="">Two Columns</a></li>
+                                        <li><a href="">Three Columns</a></li>
+                                        <li><a href="">Four Columns</a></li>
+                                        <li><a href="">Four Columns Wide</a></li>
+                                        <li><a href="">Five Columns Wide</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="">Portfolio Singl</a>
+                                    <i style="font-size: 7px; position: absolute; right: 16px; top: 160px;" class="fas fa-chevron-right"></i>
+                                    <ul class="Single">
+                                        <li><a href="">Small Images</a></li>
+                                        <li><a href="">Small Slider</a></li>
+                                        <li><a href="">Big Images</a></li>
+                                        <li><a href="">Big Slider</a></li>
+                                        <li><a href="">Gallery</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="">BLOG</a>
+                            <ul class="blog">
+                                <li><a href="">Masonry </a></li>
+                                <li><a href="">Standard</a></li>
+                                <li class="Post">
+                                    <a href="">Post Types</a>
+                                    <i style="font-size: 7px; position: absolute; right: 16px; top: 64%;" class="fas fa-chevron-right"></i>
+                                    <ul class="post-types">
+                                        <li><a href="">Standard</a></li>
+                                        <li><a href="">Gallery</a></li>
+                                        <li><a href="">Link</a></li>
+                                        <li><a href="">Quote</a></li>
+                                        <li><a href="">Audio</a></li>
+                                        <li><a href="">Video</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="elements">
+                            <a href="">ELEMENTS</a>
+                            <ul class="elementInli">
+                                <li class="clasic">
+                                    <i style="font-size: 7px; position: absolute; left: 16px; top: 13%;" class="fas fa-chevron-left"></i>
+                                    <a href="">
+                                        Classic
+                                    </a>
+                                    <ul class="inclassic">
+                                        <li><a href="./accordions.html">Accordions </a></li>
+                                        <li><a href="./tab.html">Tabs</a></li>
+                                        <li><a href="">Buttons</a></li>
+                                        <li><a href="">Video Button</a></li>
+                                        <li><a href="">Contact Form</a></li>
+                                    </ul>
+                                </li>
+                                <li class="Graphic">
+                                    <i style="font-size: 7px; position: absolute; left: 16px; top: 37%;" class="fas fa-chevron-left"></i>
+
+                                    <a href="">Inographic</a>
+                                    <ul class="InGraphic">
+                                        <li><a href="">Blog List</a></li>
+                                        <li><a href=""> Counters</a></li>
+                                        <li><a href="">Countdown</a></li>
+                                        <li><a href="">Google Maps</a></li>
+                                        <li><a href="./progres-bar.html">Progress Bar</a></li>
+                                        <li><a href="">Pie Charts</a></li>
+                                    </ul>
+                                </li>
+                                <li class="Interactive">
+                                    <i style="font-size: 7px; position: absolute; left: 16px; top: 63%;" class="fas fa-chevron-left"></i>
+
+                                    <a href="">Interactive</a>
+                                    <ul class="inInteractive">
+                                        <li><a href="">Image Gallery</a></li>
+                                        <li><a href="">Testimonials</a></li>
+                                        <li><a href="">Team</a></li>
+                                        <li><a href="">Banner</a></li>
+                                        <li><a href="./shoplist.html">Shop List</a></li>
+                                        <li><a href="">Portfolio List</a></li>
+                                    </ul>
+                                </li>
+                                <li class="Tyography">
+                                    <i style="font-size: 7px; position: absolute; left: 16px; top: 84%;" class="fas fa-chevron-left"></i>
+
+                                    <a href="">Tyography</a>
+                                    <ul class="inTyography">
+                                        <li><a href="">Headings</a></li>
+                                        <li><a href="">Columns</a></li>
+                                        <li><a href="">Section Title</a></li>
+                                        <li><a href="">Blockquote</a></li>
+                                        <li><a href="">Dropcaps</a></li>
+                                        <li><a href="">Highlights</a></li>
+                                        <li><a href="">Separators</a></li>
+                                        <li><a href="">Custom Font</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="icons col col-lg-2">
+                    <div class="search-icon">
+                        <i class="@layoutservices.GetSettings().SearchIcon"></i>
+                    </div>
+                    <div class="searchinput">
+                        <input type="search" placeholder="search">
+                    </div>
+                    <div class="basket-icon">
+                        <i class="@layoutservices.GetSettings().BasketIcon"></i>
+                        <span>0</span>
+                        <div class="basket-products">
+
+                            <div class="Basket-top">
+
+                                @foreach (var item in layoutservices.ShowBasket().basketItemVms)
+                                {
+                                    <ul>
+                                        <li data-id="@item.Product.Id">
+                                            <div class="img">
+
+                                                <img src="~/assets/img/@item.Product.ProductImgs.FirstOrDefault().Img" />
                                             </div>
+                                            <div class="delete-name">
+                                                <div class="name">
+                                                    <p>@item.Product.Name</p>
+                                                </div>
 
-                                        
+                                                <i class="fas fa-times"></i>
+                                            </div>
+                                            <div class="count-price">
+                                                <div id="@item.Product.Id" class="count">
+                                                    @item.Count x
+                                                </div>
+                                                <div class="price">
+                                                    @item.Price
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+
+                                }
+
+                                <div class="Basket-bottom ">
+                                    <div class="total-price">
+                                        <div class="text">
+                                            Total: @layoutservices.ShowBasket().TotalPrice
                                         </div>
+
 
                                     </div>
-                                    <div class="btns">
-                                        <div class="btn btn-outline-danger">
-                                            view cart
-                                        </div>
-                                        <div class="btn btn-outline-dark">
-                                            chekout
-                                        </div>
+
+                                </div>
+                                <div class="btns">
+                                    <div class="btn btn-outline-danger">
+                                        view cart
+                                    </div>
+                                    <div class="btn btn-outline-dark">
+                                        chekout
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -648,10 +679,10 @@
 
                     </div>
                 </div>
+            </div>
+        </nav>
+    </header>
 
-            </nav>
-        </header>
-    }
 
 
 
@@ -760,7 +791,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="./assets/js/parallax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-     @RenderSection("Scripts",false)
+    @RenderSection("Scripts", false)
     <script src="./assets/js/owl.carousel.min.js"></script>
     <script src="./assets/js/parallax.min.js"></script>
     <script src="./assets/js/home.js"></script>

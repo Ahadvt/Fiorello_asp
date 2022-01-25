@@ -27,5 +27,6 @@ namespace Fiorello.ViewModels
         [Compare(nameof(Pasword))]
         public string ConfirmPasword{ get; set; }
         public bool Terms { get; set; }
+        
     }
 }

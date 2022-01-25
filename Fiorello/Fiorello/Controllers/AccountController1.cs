@@ -1,4 +1,5 @@
-﻿using Fiorello.Models;
+﻿using Fiorello.Enum;
+using Fiorello.Models;
 using Fiorello.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,11 +15,13 @@ namespace Fiorello.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         public IActionResult Register()
         {
@@ -36,6 +39,8 @@ namespace Fiorello.Controllers
                 FullName = register.FulName,
                 UserName = register.UserName,
                 Email = register.Email,
+                IsAdmin=false
+
             };
 
             if (!register.Terms)
@@ -52,6 +57,10 @@ namespace Fiorello.Controllers
                 }
                 return View();
             }
+            await _userManager.AddToRoleAsync(appuser,RoleEnum.Member.ToString());
+            await _signInManager.SignInAsync(appuser,true);
+            
+            
             return RedirectToAction("Index", "Home");
         }
 
@@ -67,6 +76,11 @@ namespace Fiorello.Controllers
             if (!ModelState.IsValid) return View();
 
             AppUser User = await _userManager.FindByNameAsync(loginVM.UserName);
+            if (User.IsAdmin==true)
+            {
+                ModelState.AddModelError("", "username or pasword incorrect");
+                return View();
+            }
             if (User == null)
             {
                 ModelState.AddModelError("", "UserName or Paswor Incorrect");
@@ -96,18 +110,76 @@ namespace Fiorello.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
         }
-        [Authorize]
+
+        [Authorize(Roles ="Member")]
         public async Task<IActionResult> Edit()
         {
             AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            UserEditVM EditUser = new UserEditVM
+            UserEditVM userEditvm = new UserEditVM
+            {
+                UserName=user.UserName,
+                Email=user.Email,
+                FullName=user.FullName
+            };
+
+          
+            return View(userEditvm);
+         
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        
+        public async Task<IActionResult> Edit(UserEditVM userEditvm)
+        {
+            if (!ModelState.IsValid) return View();
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+           
+
+            UserEditVM euser = new UserEditVM
             {
                 UserName = user.UserName,
                 FullName = user.FullName,
-                Email = user.Email,
+                Email = user.Email
             };
-            return View(EditUser);
+            if (user.UserName != userEditvm.UserName && await _userManager.FindByNameAsync(userEditvm.UserName) != null)
+            {
+                ModelState.AddModelError("", $"{userEditvm.UserName} has alrady taken");
+                return View(euser);
+            }
+            if (string.IsNullOrWhiteSpace(userEditvm.CurrentPasword))
+            {
+                user.UserName = userEditvm.UserName;
+                user.FullName = userEditvm.FullName;
+                user.Email = userEditvm.Email;
+                await _userManager.UpdateAsync(user);
+                await _signInManager.SignInAsync(user, true);
+            }
+            else
+            {
+                user.UserName = userEditvm.UserName;
+
+                user.FullName = userEditvm.FullName;
+                user.Email = userEditvm.Email;
+                IdentityResult identityResult = await _userManager.ChangePasswordAsync(user, userEditvm.CurrentPasword, userEditvm.Pasword);
+                if (!identityResult.Succeeded)
+                {
+                    foreach (var error in identityResult.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                    return View(euser);
+                }
+              
+
+
+            }
+            //await _signInManager.PasswordSignInAsync(user, userEditvm.Pasword, true, true);
+
+            return RedirectToAction("index", "home");
+
         }
 
 
