@@ -33,6 +33,8 @@ namespace Fiorello.Models
         public List<IFormFile> ImageFile { get; set; }
         [NotMapped]
         public List<int> ImgIds { get; set; }
+        public List<BasketItem> BasketItems { get; set; }
+
 
 
 

@@ -18,7 +18,7 @@ namespace Fiorello.Services
         private readonly IHttpContextAccessor _Httpcontext;
         private readonly UserManager<AppUser> _userManager;
 
-        public LayoutServices(AppDbContext context , IHttpContextAccessor httpContext,UserManager<AppUser> userManager )
+        public LayoutServices(AppDbContext context, IHttpContextAccessor httpContext, UserManager<AppUser> userManager)
         {
             _context = context;
             _Httpcontext = httpContext;
@@ -30,13 +30,13 @@ namespace Fiorello.Services
             Settings data = _context.Settings.FirstOrDefault();
             return data;
         }
-       
 
-        public BasketVm ShowBasket()
+
+        public async Task<BasketVm> ShowBasket()
         {
             string basket = _Httpcontext.HttpContext.Request.Cookies["Basket"];
 
-           
+
             BasketVm basketVm = new BasketVm
             {
                 TotalPrice = 0,
@@ -44,30 +44,56 @@ namespace Fiorello.Services
                 basketItemVms = new List<BasketItemVm>()
 
             };
-            if (!string.IsNullOrEmpty(basket))
+            if (_Httpcontext.HttpContext.User.Identity.IsAuthenticated)
             {
-                List<BasketCookieItem> basketCookieItems = JsonConvert.DeserializeObject<List<BasketCookieItem>>(basket);
+                AppUser appUser = await _userManager.FindByNameAsync(_Httpcontext.HttpContext.User.Identity.Name);
+                List<BasketItem> BasketItems = _context.basketItems.Where(b => b.AppUserId == appUser.Id).ToList();
 
-                foreach (BasketCookieItem item in basketCookieItems)
+                foreach (BasketItem item in BasketItems)
                 {
-                    Product product = _context.Products.FirstOrDefault(p => p.Id == item.Id);
+                    Product product = _context.Products.Include(p=>p.Discaunt).FirstOrDefault(p => p.Id == item.ProductId);
                     if (product != null)
                     {
                         BasketItemVm basketItem = new BasketItemVm
                         {
-                            Product=_context.Products.Include(b=> b.ProductImgs).Include(b=>b.Discaunt).FirstOrDefault(b=>b.Id==item.Id),
-                            Count=item.Count
-                        };
+                            Count = item.Count,
+                            Product = _context.Products.Include(p => p.ProductImgs).FirstOrDefault(p => p.Id == item.ProductId)
 
+                        };
                         basketItem.Price = basketItem.Product.DiscauntId == null ? basketItem.Product.Price : basketItem.Product.Price * (100 - basketItem.Product.Discaunt.Precenet) / 100;
+                        basketVm.Count ++;
                         basketVm.basketItemVms.Add(basketItem);
-                        basketVm.TotalPrice += basketItem.Price * basketItem.Count;
-                        basketVm.Count++;
+                        basketVm.TotalPrice = basketItem.Price * basketItem.Count;
+                    }
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(basket))
+                {
+                    List<BasketCookieItem> basketCookieItems = JsonConvert.DeserializeObject<List<BasketCookieItem>>(basket);
+
+                    foreach (BasketCookieItem item in basketCookieItems)
+                    {
+                        Product product = _context.Products.FirstOrDefault(p => p.Id == item.Id);
+                        if (product != null)
+                        {
+                            BasketItemVm basketItem = new BasketItemVm
+                            {
+                                Product = _context.Products.Include(b => b.ProductImgs).Include(b => b.Discaunt).FirstOrDefault(b => b.Id == item.Id),
+                                Count = item.Count
+                            };
+
+                            basketItem.Price = basketItem.Product.DiscauntId == null ? basketItem.Product.Price : basketItem.Product.Price * (100 - basketItem.Product.Discaunt.Precenet) / 100;
+                            basketVm.basketItemVms.Add(basketItem);
+                            basketVm.TotalPrice += basketItem.Price * basketItem.Count;
+                            basketVm.Count++;
+                        }
+
+
                     }
 
-                    
                 }
-               
             }
             return basketVm;
 

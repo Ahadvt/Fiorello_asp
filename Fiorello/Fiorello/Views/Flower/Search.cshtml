@@ -1,0 +1,44 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div class="text text-danger" asp-validation-summary="ModelOnly"></div>
+<section id="cards">
+    <div class="card-filter">
+
+
+        <div class="cards row">
+
+            @foreach (var item in Model)
+            {
+                if (item != null)
+                {
+                    <div class="mycard  col-lg-3 col-md-6 all" data-id="@item.ProductCategorys.FirstOrDefault().Category.Name">
+                        <div class="img">
+                            <img src="~/assets/img/@item.ProductImgs.FirstOrDefault().Img" alt="">
+
+                        </div>
+                        <div class="name">
+                            <a href="#">@item.Name</a>
+                        </div>
+                        <div class="price">
+                            <div class="adCart product">Add to cart</div>
+                            <div class="cost">@item.Price</div>
+
+                        </div>
+                    </div>
+                }
+                else
+                {  
+                    <div class="text text-danger" >belesi yoxdur ay bala</div>
+
+                }
+
+            }
+
+        </div>
+    </div>
+</section>
+

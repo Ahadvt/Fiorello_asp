@@ -1,5 +1,8 @@
 ﻿@inject Fiorello.Services.LayoutServices layoutservices
 
+@{ 
+    BasketVm basketVm = await layoutservices.ShowBasket();
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -426,7 +429,9 @@
                         <i class="@layoutservices.GetSettings().SearchIcon"></i>
                     </div>
                     <div class="searchinput">
-                        <input type="search" placeholder="search">
+                        <form asp-action="Search" asp-controller="Flower" >
+                            <input name="Name" id="Name"  type="search" placeholder="search">
+                        </form>
                     </div>
                     <div class="basket-icon">
                         <i class="@layoutservices.GetSettings().BasketIcon"></i>
@@ -435,7 +440,7 @@
 
                             <div class="Basket-top">
 
-                                @foreach (var item in layoutservices.ShowBasket().basketItemVms)
+                                @foreach (var item in basketVm.basketItemVms)
                                 {
                                     <ul>
                                         <li data-id="@item.Product.Id">
@@ -467,7 +472,7 @@
                                 <div class="Basket-bottom ">
                                     <div class="total-price">
                                         <div class="text">
-                                            Total: @layoutservices.ShowBasket().TotalPrice
+                                            Total: @basketVm.TotalPrice
                                         </div>
 
 

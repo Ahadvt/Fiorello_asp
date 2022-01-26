@@ -189,5 +189,9 @@ namespace Fiorello.Areas.Manage.Controllers
             _context.SaveChanges();
             return Json(new {status=200 });
         }
+
+
+
+   
     }
 }
