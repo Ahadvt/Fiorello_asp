@@ -641,3 +641,4 @@ C:\Users\HP\Desktop\Fiorello\Fiorello_asp\Fiorello\Fiorello\obj\Debug\netcoreapp
 C:\Users\HP\Desktop\Fiorello\Fiorello_asp\Fiorello\Fiorello\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Dashboard\Index.cshtml.g.cs
 C:\Users\HP\Desktop\Fiorello\Fiorello_asp\Fiorello\Fiorello\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\AdminCreate.cshtml.g.cs
 C:\Users\HP\Desktop\Fiorello\Fiorello_asp\Fiorello\Fiorello\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\Index.cshtml.g.cs
+C:\Users\HP\Desktop\Fiorello\Fiorello_asp\Fiorello\Fiorello\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\EditAdmin.cshtml.g.cs

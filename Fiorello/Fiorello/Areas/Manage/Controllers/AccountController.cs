@@ -17,7 +17,7 @@ namespace Fiorello.Areas.Manage.Controllers
 
 
     [Area("Manage")]
-    //[Authorize(Roles = "SuperAdmin,Admin")]
+    
     public class AccountController : Controller
     {
 
@@ -32,7 +32,7 @@ namespace Fiorello.Areas.Manage.Controllers
             _roleManager = roleManager;
         }
 
-
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult Index()
         {
             List<AppUser> Admins = _userManager.Users.Where(u=>u.IsAdmin==true).ToList();
@@ -73,7 +73,7 @@ namespace Fiorello.Areas.Manage.Controllers
         //    await _roleManager.CreateAsync(new IdentityRole(RoleEnum.Member.ToString()));
         //}
 
-
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult AdminCreate()
         {
             ViewBag.Roles = _roleManager.Roles.ToList();
@@ -83,7 +83,7 @@ namespace Fiorello.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> AdminCreate(CreateAdminVM createAdminVM)
         {
             if (!ModelState.IsValid) return View();
@@ -126,6 +126,70 @@ namespace Fiorello.Areas.Manage.Controllers
         {
             await _signInResult.SignOutAsync();
             return RedirectToAction("Login", "account");
+        }
+
+        public async Task<IActionResult> EditAdmin(string id, EditAdminVm adminvm)
+        {
+            AppUser Admins = await _userManager.FindByIdAsync(id);
+            
+            EditAdminVm editAdminVm = new EditAdminVm
+            {
+                UserName = Admins.UserName,
+                Role = Admins.Roles
+            };
+            ViewBag.Roles = _roleManager.Roles.ToList();
+            return View(editAdminVm);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("EditAdmin")]
+
+        public async Task<IActionResult> EditAdminPost(string id ,EditAdminVm adminvm)
+        {
+           
+            if (!ModelState.IsValid) return View();
+            AppUser admin = await _userManager.FindByIdAsync(id);
+            ViewBag.Roles = _roleManager.Roles.ToList();
+            EditAdminVm eadmin = new EditAdminVm
+            {
+                UserName = admin.UserName,
+               
+
+            };
+
+            //if (_userManager.FindByNameAsync(adminvm.UserName)==null)
+            //{
+            //    ModelState.AddModelError("", "this username alrady exsist");
+            //    return View(eadmin);
+
+            //}
+            if (string.IsNullOrWhiteSpace(adminvm.CurrenPasword))
+            {
+                admin.UserName = adminvm.UserName;
+                admin.Roles = adminvm.Role;
+                await _userManager.UpdateAsync(admin);
+
+
+            }
+            else
+            {
+                admin.UserName = adminvm.UserName;
+                admin.Roles = adminvm.Role;
+
+                IdentityResult Result = await _userManager.ChangePasswordAsync(admin, adminvm.CurrenPasword, adminvm.Pasword);
+                if (!Result.Succeeded)
+                {
+                    foreach (var item in Result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+
+                    }
+                    return View(eadmin);
+                }
+            }
+            //await _signInManager.PasswordSignInAsync(user, userEditvm.Pasword, false, true);
+
+            return RedirectToAction("index", "account");
         }
     }
 }

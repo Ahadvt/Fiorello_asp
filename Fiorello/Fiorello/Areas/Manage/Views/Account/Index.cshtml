@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="d-flex justify-content-end mt-3 ml-3 mb-2">
-        <a asp-controller="account" asp-action="creat" class=" btn btn-outline-secondary btn-icon-text">
+        <a asp-controller="account" asp-action="admincreate" class=" btn btn-outline-secondary btn-icon-text">
             <i class="mdi mdi-upload btn-icon-prepend"></i>
             Creat
         </a>
@@ -23,8 +23,6 @@
                    Role
                 </th>
                
-
-
             </tr>
         </thead>
         <tbody>
@@ -44,7 +42,7 @@
 
 
                 <td>
-                    <a asp-controller="flower" asp-action="edit" class="btn btn-warning btn-icon-text">
+                    <a asp-controller="account" asp-action="editadmin" asp-route-id="@admins.Id" class="btn btn-warning btn-icon-text">
                         <i class="mdi mdi-alert btn-icon-prepend"></i>
                         Edit
                     </a>
